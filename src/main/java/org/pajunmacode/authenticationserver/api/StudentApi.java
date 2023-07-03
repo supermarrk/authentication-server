@@ -1,6 +1,5 @@
 package org.pajunmacode.authenticationserver.api;
 
-import org.pajunmacode.authenticationserver.constant.Course;
 import org.pajunmacode.authenticationserver.model.Student;
 import org.pajunmacode.authenticationserver.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/student")
