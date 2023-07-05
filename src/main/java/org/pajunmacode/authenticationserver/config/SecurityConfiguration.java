@@ -26,7 +26,10 @@
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 //        http.authorizeRequests()
-//                .antMatchers("/v1/student/enroll/computerscience", "/v1/student/find?course=POLITICAL_SCIENCE")
+//                .antMatchers(
+//                        "/v1/student/enroll/computerscience",
+//                        "/v1/student/find?course=POLITICAL_SCIENCE",
+//                        "/admin/**")
 //                .permitAll()
 //                .and()
 ////                .authorizeRequests()

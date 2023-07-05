@@ -36,6 +36,8 @@ public class AuthServerConfiguration {
                 .requestMatcher(authorizationServerConfigurer
                         .getEndpointsMatcher()).authorizeRequests(authorize ->
                         authorize
+                                .mvcMatchers("/admin/create-account")
+                                .permitAll()
                                 .anyRequest()
                                 .authenticated());
         http
