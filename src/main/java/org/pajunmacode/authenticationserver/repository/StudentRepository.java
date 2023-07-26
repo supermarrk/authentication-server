@@ -1,6 +1,6 @@
 package org.pajunmacode.authenticationserver.repository;
 
-import org.pajunmacode.authenticationserver.model.Student;
+import org.pajunmacode.authenticationserver.document.Student;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

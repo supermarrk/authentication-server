@@ -1,6 +1,6 @@
 package org.pajunmacode.authenticationserver.service;
 
-import org.pajunmacode.authenticationserver.model.Student;
+import org.pajunmacode.authenticationserver.document.Student;
 
 import java.util.List;
 

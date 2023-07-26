@@ -1,4 +1,4 @@
-package org.pajunmacode.authenticationserver.model;
+package org.pajunmacode.authenticationserver.document;
 
 import lombok.Data;
 

@@ -1,0 +1,15 @@
+server:
+    port: 8080
+spring:
+    logging:
+        level:
+            root: DEBUG
+            org.springframework: DEBUG
+    data:
+        mongodb:
+            authentication-database: admin
+            database: pajunmadb
+            host: localhost
+            password: rootpass
+            port: 27017
+            username: rootuser

@@ -2,7 +2,7 @@ package org.pajunmacode.authenticationserver.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.pajunmacode.authenticationserver.constant.Course;
-import org.pajunmacode.authenticationserver.model.Student;
+import org.pajunmacode.authenticationserver.document.Student;
 import org.pajunmacode.authenticationserver.repository.StudentRepository;
 import org.pajunmacode.authenticationserver.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

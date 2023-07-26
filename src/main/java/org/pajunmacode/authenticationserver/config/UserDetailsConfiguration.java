@@ -1,6 +1,6 @@
 package org.pajunmacode.authenticationserver.config;
 
-import org.pajunmacode.authenticationserver.model.authuser.UserDetailsEntity;
+import org.pajunmacode.authenticationserver.document.authuser.UserDetailsEntity;
 import org.pajunmacode.authenticationserver.repository.UserDetailsEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,14 +31,14 @@ public class UserDetailsConfiguration implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
-        List<GrantedAuthority> roles = userRecord.get().getRoles().stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+//        List<GrantedAuthority> roles = userRecord.get().getRoles().stream()
+//                .map(SimpleGrantedAuthority::new)
+//                .collect(Collectors.toList());
 
         UserDetails user = User
                 .withUsername(userRecord.get().getUsername())
                 .password(userRecord.get().getPassword())
-                .authorities(roles).build();
+                .authorities(userRecord.get().getAuthorities()).build();
         return user;
     }
 

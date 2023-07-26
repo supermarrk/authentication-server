@@ -1,6 +1,6 @@
 package org.pajunmacode.authenticationserver.api;
 
-import org.pajunmacode.authenticationserver.model.authuser.UserDetailsEntity;
+import org.pajunmacode.authenticationserver.document.authuser.UserDetailsEntity;
 import org.pajunmacode.authenticationserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

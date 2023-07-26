@@ -1,7 +1,7 @@
 package org.pajunmacode.authenticationserver.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import org.pajunmacode.authenticationserver.model.authuser.UserDetailsEntity;
+import org.pajunmacode.authenticationserver.document.authuser.UserDetailsEntity;
 import org.pajunmacode.authenticationserver.repository.UserDetailsEntityRepository;
 import org.pajunmacode.authenticationserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
