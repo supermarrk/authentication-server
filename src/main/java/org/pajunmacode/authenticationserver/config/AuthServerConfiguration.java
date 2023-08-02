@@ -47,6 +47,23 @@ public class AuthServerConfiguration {
         return http.formLogin(Customizer.withDefaults()).build();
     }
 
+    // OpenID Connect 1.0 Client Registration Endpoint
+//    @Bean
+//    public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
+//        OAuth2AuthorizationServerConfigurer<HttpSecurity> authorizationServerConfigurer =
+//                new OAuth2AuthorizationServerConfigurer<>();
+//        http.apply(authorizationServerConfigurer);
+//
+//        authorizationServerConfigurer
+//                .oidc(oidc ->
+//                        oidc.clientRegistrationEndpoint(Customizer.withDefaults())
+//                );
+//
+//        return http.build();
+//    }
+
+
+
 //    public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
 //
 //        OAuth2AuthorizationServerConfigurer<HttpSecurity> authorizationServerConfigurer = new OAuth2AuthorizationServerConfigurer<>();
@@ -76,13 +93,13 @@ public class AuthServerConfiguration {
 //        return http.build();
 //    }
 
-    @Bean
-    @Order(2)
-    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .formLogin(Customizer.withDefaults())
-                .build();
-    }
+//    @Bean
+//    @Order(2)
+//    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+//        return http
+//                .formLogin(Customizer.withDefaults())
+//                .build();
+//    }
 
     @Bean
 //    @Primary
