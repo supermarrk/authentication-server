@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.MediaType;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.authorization.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -25,6 +27,8 @@ import org.springframework.security.oauth2.server.authorization.config.ClientSet
 import org.springframework.security.oauth2.server.authorization.config.ProviderSettings;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.util.UUID;
 
@@ -39,12 +43,47 @@ public class AuthServerConfiguration {
     @Autowired
     JwtToUserConverter jwtToUserConverter;
 
+    /**
+     * Spring Security filter chain for the Protocol Endpoints.
+     */
     @Bean
     @Order(1)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
+
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
 
-        return http.formLogin(Customizer.withDefaults()).build();
+        http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
+                .oidc(customCustomizer());	// Enable OpenID Connect 1.0
+
+        http
+                .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
+                .exceptionHandling((exceptions) -> exceptions
+                        .defaultAuthenticationEntryPointFor(
+                                new LoginUrlAuthenticationEntryPoint("/login"),
+                                new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
+                        )
+                );
+
+        // Enable OpenID Connect Client Registration
+//        http.apply(authorizationServerConfigurer);
+//
+//        authorizationServerConfigurer
+//                .oidc(oidc -> {
+//                    oidc.clientRegistrationEndpoint(Customizer.withDefaults());
+//                    oidc.userInfoEndpoint(Customizer.withDefaults());
+//                    }
+//
+//                );
+//        http.apply(authorizationServerConfigurer);
+
+
+        return http.build();
+
+//        return http.formLogin(Customizer.withDefaults()).build();
+    }
+
+    public AuthorizationServerCustomConfigs customCustomizer() {
+        return new AuthorizationServerCustomConfigs();
     }
 
     // OpenID Connect 1.0 Client Registration Endpoint
@@ -204,10 +243,15 @@ public class AuthServerConfiguration {
 //                .build();
 //    }
 
+    /**
+     * This is the iss
+     */
     @Bean
     public ProviderSettings providerSettings() {
         return ProviderSettings.builder()
                 .issuer("http://auth-server:8080")
+//                .oidcClientRegistrationEndpoint("http://auth-server:8080/connect/register")
+                .oidcClientRegistrationEndpoint("/clientinfo")
                 .build();
     }
 

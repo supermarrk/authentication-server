@@ -65,7 +65,7 @@ public class SpringSecurityConfiguration { //extends {// WebSecurityConfiguratio
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest()
-                .permitAll())
+                .authenticated())
                 .formLogin(Customizer.withDefaults())
                 .csrf().disable();
         return http.build();

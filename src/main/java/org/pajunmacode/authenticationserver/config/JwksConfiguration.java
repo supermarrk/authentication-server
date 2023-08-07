@@ -20,6 +20,9 @@ import com.nimbusds.jose.proc.SecurityContext;
 @Configuration
 public class JwksConfiguration {
 
+    /**
+     * An instance of JwtDecoder used to validate access tokens.
+     */
     @Bean
     public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
         return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
